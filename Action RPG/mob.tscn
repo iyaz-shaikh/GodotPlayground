@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bow1vdetgtr8x"]
+[gd_scene load_steps=10 format=3 uid="uid://bow1vdetgtr8x"]
 
 [ext_resource type="Texture2D" uid="uid://8rf6b81e6tyx" path="res://art/enemyFlyingAlt_1.png" id="1_coirt"]
 [ext_resource type="Script" path="res://mob.gd" id="1_f7seo"]
@@ -44,6 +44,10 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_byxte"]
+radius = 29.0
+height = 72.0
+
 [node name="Mob" type="RigidBody2D"]
 collision_mask = 0
 gravity_scale = 0.0
@@ -57,6 +61,7 @@ sprite_frames = SubResource("SpriteFrames_iff7x")
 animation = &"swim"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_byxte")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

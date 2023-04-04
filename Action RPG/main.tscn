@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://q2bcm6un41a4"]
+[gd_scene load_steps=6 format=3 uid="uid://q2bcm6un41a4"]
 
 [ext_resource type="PackedScene" uid="uid://dwi8wvpokqsk3" path="res://scene.tscn" id="1_7honf"]
 [ext_resource type="Script" path="res://main.gd" id="1_uxprq"]
 [ext_resource type="PackedScene" uid="uid://bow1vdetgtr8x" path="res://mob.tscn" id="2_635uk"]
+[ext_resource type="PackedScene" uid="uid://c71otbxmnxl6t" path="res://canvas_layer.tscn" id="4_pyncu"]
 
 [sub_resource type="Curve2D" id="Curve2D_5115y"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 28.8001, 0, 0, 0, 0, 0, 57.6002, 0, 0, 0, 0, 0, 57.6002, 59.7988, 0, 0, 0, 0, 28.8001, 59.7988, 0, 0, 0, 0, 28.8001, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -21.6001, 156.971, 0, 0, 0, 0, 144.001, 156.971, 0, 0, 0, 0, 144.001, 530.712, 0, 0, 0, 0, -21.6001, 530.712, 0, 0, 0, 0, -21.6001, 156.971)
 }
 point_count = 5
 
@@ -29,13 +30,17 @@ one_shot = true
 position = Vector2(240, 450)
 
 [node name="MobPath" type="Path2D" parent="."]
+position = Vector2(112, 88)
 scale = Vector2(2.22221, 1.07026)
 curve = SubResource("Curve2D_5115y")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(28.8001, 0)
+position = Vector2(-21.6001, 156.971)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_pyncu")]
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="CanvasLayer" to="." method="new_game"]
